@@ -9,7 +9,7 @@ const { updateBetfairOdds } = require('./cron/betfair');
 
 mongoDB.once('open', function() {
   console.log('--  MogoDB Connected  --');
-  // updatePs3838Odds();
+  updatePs3838Odds();
   updateBetfairOdds();
 });
 
