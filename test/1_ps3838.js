@@ -6,6 +6,6 @@ const { authPs, getPsOdds } = require('./../lib/ps3838');
 
 const run = async() => {
   var token = authPs("PW7110000P", "Password1!");
-  await getPsOdds(4, [512], 0, false, token);
+  await getPsOdds(4, [487], 0, false, token);
 }
 run()
