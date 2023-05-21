@@ -10,6 +10,7 @@ const OddsSchema = new mongoose.Schema(
     eventId: { type: Number, required: true },
     home: { type: String, required: true },
     away: { type: String, required: true },
+    state: { type: Number, default: 0 },
     market: []
   },
   { collection: 'odds' }
