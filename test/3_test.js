@@ -1,2 +1,3 @@
-test = ['ax', 'ay', 'az'];
-if(test.includes('axd')) console.log('yes')
+var x = 'erecse';
+
+console.log(x.includes('ec'))
