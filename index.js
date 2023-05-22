@@ -39,7 +39,7 @@ mongoDB.once('open', function() {
   updatePs3838Odds();
   updateBetfairOdds();
   runsetBetState();
-  // runplacebet();
+  runplacebet();
 
   
   const port = process.env.PORT || 4100;
