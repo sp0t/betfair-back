@@ -6,6 +6,8 @@ var mongoDB = mongoose.connection;
 
 const { updatePs3838Odds } = require('./cron/ps3838');
 const { updateBetfairOdds } = require('./cron/betfair');
+const { runsetBetState } = require('./cron/setbetstate');
+const { runplacebet } = require('./cron/placebet');
 
 mongoDB.once('open', function() {
   console.log('--  MogoDB Connected  --');
@@ -34,8 +36,11 @@ mongoDB.once('open', function() {
   
   
   console.log('--  Server Started  --')
-  // updatePs3838Odds();
-  // updateBetfairOdds();
+  updatePs3838Odds();
+  updateBetfairOdds();
+  runsetBetState();
+  runplacebet();
+
   
   const port = process.env.PORT || 4100;
   //Starting a server
