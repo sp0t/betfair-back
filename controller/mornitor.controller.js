@@ -35,7 +35,6 @@ exports.removeMornitor = async(req, res) => {
 }
 
 exports.getMornitor = async(req, res) => {
-	console.log('getmontier contorller-->');
   try{
     const result = await mornitor.find({})
     res.send(result)

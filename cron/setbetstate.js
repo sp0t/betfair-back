@@ -5,7 +5,7 @@ const cron = require('node-cron');
 const { setBetState } = require('./../lib/setbetstate');
 
 const runsetBetState = () => {
-  cron.schedule("*/4 * * * * *", function() {
+  cron.schedule("*/3 * * * * *", function() {
     try {
         setBetState();
     } catch (error) {
