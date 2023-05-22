@@ -11,7 +11,7 @@ const updateBetfairOdds = () => {
     try {
       var funcs = [];
       var [monitor, session] = await Promise.all([
-         mornitor.find({}),
+         mornitor.find({state: true}),
          auth.find({site: 'betfair'})
       ]);
 

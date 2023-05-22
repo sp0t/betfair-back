@@ -10,7 +10,7 @@ const { auth } = require('./../models/auth')
 const runplacebet = () => {
   cron.schedule("*/3 * * * * *", async() => {
     var [mornitors, betrates, seesion] = await Promise.all([
-       mornitor.find({state: '0'}),
+       mornitor.find({state: true}),
        betrate.find({}),
        auth.find({site: 'betfair'})
     ]); 
