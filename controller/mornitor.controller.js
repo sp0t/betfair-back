@@ -37,6 +37,7 @@ exports.removeMornitor = async(req, res) => {
 exports.getMornitor = async(req, res) => {
   try{
     const result = await mornitor.find({})
+    console.log('getmornitor=======>', result);
     res.send(result)
   } catch(e) {
 		res.status(500).send({message: "Something went wrong"});
