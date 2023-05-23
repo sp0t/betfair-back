@@ -5,6 +5,8 @@ exports.addBetrate = async(req, res) => {
   const to = req.body.to;
   const price = req.body.price;
 
+  console.log(req.body)
+
   try{
     const result = await betrate.findOneAndUpdate({from: from, to: to, price: price},
       {
@@ -25,8 +27,6 @@ exports.removeBetrate = async(req, res) => {
   const from = req.body.from;
   const to = req.body.to;
   const price = req.body.price;
-
-  console.log(req.body)
 
   try{
     const result = await betrate.findOneAndDelete({from: from, to: to, price: price})
