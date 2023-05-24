@@ -1,9 +1,9 @@
-export const betSites = [
+module.exports.betSites = [
   'ps3838',
   'betfair'
 ]
 
-export const sportsId = {
+module.exports.sportsId = {
   ps3838: {
     'Badminton': 1,
     'Bandy': 2,
@@ -195,7 +195,7 @@ export const sportsId = {
   }
 }
 
-export const competitionId = { // League
+module.exports.competitionId = { // League
   ps3838: {
     'Badminton': {
       'Malaysian Open - Mixed Doubles': 220502,

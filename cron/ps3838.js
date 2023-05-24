@@ -15,16 +15,18 @@ const updatePs3838Odds = () => {
          auth.find({site: 'ps3838'})
       ]);
 
-      var token = authPs(session[0].username, session[0].password);
-
-      for (var x in monitor) {
-        for (var y in monitor[x].sites) {
-          if (monitor[x].sites[y].name == 'ps3838') {
-            funcs.push(getPsOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, 0, false, token))
+      if ((monitor.length != 0) && (session.length != 0)) {
+        var token = authPs(session[0].username, session[0].password);
+  
+        for (var x in monitor) {
+          for (var y in monitor[x].sites) {
+            if (monitor[x].sites[y].name == 'ps3838') {
+              funcs.push(getPsOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, 0, monitor[x].play, token))
+            }
           }
         }
+        var ret = await Promise.all(funcs);
       }
-      var ret = await Promise.all(funcs);
     } catch (error) {
       console.log('updatePs3838Odds', error);
     }

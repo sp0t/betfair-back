@@ -15,15 +15,16 @@ const runplacebet = () => {
        auth.find({site: 'betfair'})
     ]); 
 
-    var funcs = []
-    for (var x in mornitors) {
-        for (var y in mornitors[x].sites[0].competition) {
-            funcs.push(placebet(mornitors[x].sites[0].name, mornitors[x].sites[0].competition[y], mornitors[x].sites[1].name, mornitors[x].sites[1].competition[y], betrates, seesion[0]));
-        }
-    }
-
-    var rets = await Promise.all(funcs)
-    
+    if ((mornitors.length != 0) && (betrate.length != 0) && (seesion.length != 0)) {
+      var funcs = []
+      for (var x in mornitors) {
+          for (var y in mornitors[x].sites[0].competition) {
+              funcs.push(placebet(mornitors[x].sites[0].name, mornitors[x].sites[0].competition[y], mornitors[x].sites[1].name, mornitors[x].sites[1].competition[y], betrates, seesion[0]));
+          }
+      }
+  
+      var rets = await Promise.all(funcs)
+    } 
   });
 }
 module.exports.runplacebet = runplacebet;

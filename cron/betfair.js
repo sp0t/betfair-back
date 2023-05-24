@@ -15,14 +15,16 @@ const updateBetfairOdds = () => {
          auth.find({site: 'betfair'})
       ]);
 
-      for (var x in monitor) {
-        for (var y in monitor[x].sites) {
-          if (monitor[x].sites[y].name == 'betfair') {
-            funcs.push(getBtOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, ['Moneyline', 'Total Points', 'Handicap'], false, session[0].username, session[0].password))
+      if ((monitor.length != 0) && (session.length != 0)) {
+        for (var x in monitor) {
+          for (var y in monitor[x].sites) {
+            if (monitor[x].sites[y].name == 'betfair') {
+              funcs.push(getBtOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, ['Moneyline', 'Total Points', 'Handicap'], monitor[x].play, session[0].username, session[0].password))
+            }
           }
         }
+        var ret = await Promise.all(funcs);
       }
-      var ret = await Promise.all(funcs);
     } catch (error) {
       console.log('updateBetfairOdds', error);
     }
