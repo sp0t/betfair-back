@@ -15,6 +15,8 @@ const runplacebet = () => {
        auth.find({site: 'betfair'})
     ]); 
 
+    console.log('place betting start.......');
+
     if ((mornitors.length != 0) && (betrate.length != 0) && (seesion.length != 0)) {
       var funcs = []
       for (var x in mornitors) {
