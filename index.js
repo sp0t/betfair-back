@@ -38,7 +38,7 @@ mongoDB.once('open', function() {
   console.log('--  Server Started  --')
   updatePs3838Odds();
   updateBetfairOdds();
-  // runsetBetState();
+  runsetBetState();
   runplacebet();
 
   
