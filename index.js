@@ -1,5 +1,6 @@
 require("dotenv").config();
 var mongoose = require('mongoose');
+const cors = require('cors');
 mongoose.connect(process.env.DB_HOST+'/'+process.env.DB_NAME, {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('strictQuery', false);
 var mongoDB = mongoose.connection;
@@ -38,11 +39,11 @@ mongoDB.once('open', function() {
   console.log('--  Server Started  --')
   updatePs3838Odds();
   updateBetfairOdds();
-  runsetBetState();
-  runplacebet();
+  // runsetBetState();
+  // runplacebet();
 
   
-  const port = process.env.PORT || 4100;
+  const port = process.env.PORT || 4200;
   //Starting a server
   app.listen(port, () => {
     console.log(`app is running at ${port}`);
