@@ -4,7 +4,7 @@ const cron = require('node-cron');
 
 const { placebet } = require('./../lib/placebet');
 const { mornitor } = require('./../models/mornitor');
-const { betrate } = require('./../models/betrate');
+const { betrate } = require('../models/stakemode');
 const { auth } = require('./../models/auth')
 
 const runplacebet = () => {

@@ -1,6 +1,5 @@
 require("dotenv").config();
 var mongoose = require('mongoose');
-const cors = require('cors');
 mongoose.connect(process.env.DB_HOST+'/'+process.env.DB_NAME, {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('strictQuery', false);
 var mongoDB = mongoose.connection;
@@ -29,7 +28,7 @@ mongoDB.once('open', function() {
   app.use(cookieParser());
 
   require("./routes/monitor.router.js")(app);
-  require("./routes/betrate.router.js")(app);
+  require("./routes/stakemode.router.js")(app);
   
   app.use('/', (req, res) => {
     res.send('API is working')
@@ -37,8 +36,8 @@ mongoDB.once('open', function() {
   
   
   console.log('--  Server Started  --')
-  updatePs3838Odds();
-  updateBetfairOdds();
+  // updatePs3838Odds();
+  // updateBetfairOdds();
   // runsetBetState();
   // runplacebet();
 
