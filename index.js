@@ -29,15 +29,15 @@ mongoDB.once('open', function() {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
 
-  // app.get('/odds-stream', sse, (req, res) => {
-  //   setInterval(() => {
-  //     console.log('=============================>', req.query.value)
-  //     let oddsData = { sport: 'football', odds: 2.5 };
-  //     const newOdds = Math.random() * 5; // update the odds value
-  //     oddsData.odds = newOdds.toFixed(2);
-  //     res.sse(`data: ${JSON.stringify(oddsData)}\n\n`);
-  //   }, 3000); // Send a new update every 5 seconds
-  // });
+  app.get('/getoddData', sse, (req, res) => {
+    setInterval(() => {
+      console.log('=============================>', req.query.value)
+      let oddsData = { sport: 'football', odds: 2.5 };
+      const newOdds = Math.random() * 5; // update the odds value
+      oddsData.odds = newOdds.toFixed(2);
+      res.sse(`data: ${JSON.stringify(oddsData)}\n\n`);
+    }, 3000); // Send a new update every 5 seconds
+  });
 
   require("./routes/monitor.router.js")(app);
   require("./routes/stakemode.router.js")(app);
