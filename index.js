@@ -1,5 +1,7 @@
 require("dotenv").config();
+const sse = require('server-sent-events');
 var mongoose = require('mongoose');
+
 mongoose.connect(process.env.DB_HOST+'/'+process.env.DB_NAME, {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('strictQuery', false);
 var mongoDB = mongoose.connection;
@@ -27,6 +29,16 @@ mongoDB.once('open', function() {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
 
+  // app.get('/odds-stream', sse, (req, res) => {
+  //   setInterval(() => {
+  //     console.log('=============================>', req.query.value)
+  //     let oddsData = { sport: 'football', odds: 2.5 };
+  //     const newOdds = Math.random() * 5; // update the odds value
+  //     oddsData.odds = newOdds.toFixed(2);
+  //     res.sse(`data: ${JSON.stringify(oddsData)}\n\n`);
+  //   }, 3000); // Send a new update every 5 seconds
+  // });
+
   require("./routes/monitor.router.js")(app);
   require("./routes/stakemode.router.js")(app);
   
@@ -36,8 +48,8 @@ mongoDB.once('open', function() {
   
   
   console.log('--  Server Started  --')
-  updatePs3838Odds();
-  updateBetfairOdds();
+  // updatePs3838Odds();
+  // updateBetfairOdds();
   // runsetBetState();
   // runplacebet();
 
