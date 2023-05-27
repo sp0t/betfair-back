@@ -11,7 +11,7 @@ const updatePs3838Odds = () => {
     try {
       var funcs = [];
       var [monitor, session] = await Promise.all([
-         mornitor.find({state: true}),
+         mornitor.find({monit: true}),
          auth.find({site: 'ps3838'})
       ]);
 
