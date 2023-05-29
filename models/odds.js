@@ -11,7 +11,7 @@ const OddsSchema = new mongoose.Schema(
     eventName: { type: String, default: '' },
     home: { type: String, required: true },
     away: { type: String, required: true },
-    state: { type: String, default: 0 },
+    state: { type: Boolean, default: false },
     matchday: {type: String, default: ''},
     update: {type: Number},
     stakemode: {},

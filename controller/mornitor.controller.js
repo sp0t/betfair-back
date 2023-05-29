@@ -1,4 +1,5 @@
 const { mornitor } = require('./../models/mornitor');
+const { odds } = require('./../models/odds');
 const {betSites, sportsId, competitionId } = require('./../const/dic')
 
 exports.addMornitor = async(req, res) => {
@@ -40,13 +41,12 @@ exports.getMornitor = async(req, res) => {
   try{
     let result;
     if (sport == 'ALL')
-      result = await mornitor.find({})
+      result = await mornitor.find({}).sort({sport: 1})
     else
       result = await mornitor.find({sport: sport})
     res.send(result)
   } catch(e) {
 		res.status(500).send({message: "Something went wrong"});
-    // res.status(500).send({message: e || "Something went wrong"});
   }
 }
 
@@ -151,9 +151,11 @@ exports.updateMornitor = async(req, res) => {
 }
 
 exports.getSport = (req, res) => {
+  console.log('==========================sportsId')
   res.send(sportsId);
 }
 
 exports.getLeague = (req, res) => {
+  console.log('==========================competitionId')
   res.send(competitionId);
 }
