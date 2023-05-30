@@ -13,13 +13,15 @@ const updateBetfairOdds = () => {
       var funcs = [];
       var [monitor, session] = await Promise.all([
          mornitor.find({monit: true}),
-         auth.find({site: 'betfair'})
+         auth.find({})
       ]);
+
+      console.log(session)
 
       var updatetm = new Date().getTime() + 2000;
 
       if ((monitor.length != 0) && (session.length != 0)) {
-        var token = authPs(session[0].username, session[0].password);
+        var token = authPs(session[1].username, session[1].password);
         for (var x in monitor) {
           for (var y in monitor[x].sites) {
             if (monitor[x].sites[y].name == 'betfair') {
