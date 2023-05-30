@@ -16,8 +16,6 @@ const updateBetfairOdds = () => {
          auth.find({})
       ]);
 
-      console.log(session)
-
       var updatetm = new Date().getTime() + 2000;
 
       if ((monitor.length != 0) && (session.length != 0)) {
