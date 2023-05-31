@@ -85,7 +85,7 @@ exports.setMatchStakeMode = async(req, res) => {
 		resOne.stakemode.percentto = stakemode.percentto;
 		resOne.stakemode.fixed = stakemode.fixed;
 		resOne.stakemode.percent = stakemode.percent;
-    resOne.stakemode.max = stakemode.max;
+    	resOne.stakemode.max = stakemode.max;
 		const result = await resOne.save();
 		res.send(result);
 	} catch (error) {

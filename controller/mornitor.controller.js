@@ -1,15 +1,16 @@
 const { mornitor } = require('./../models/mornitor');
 const { odds } = require('./../models/odds');
 const {betSites, sportsId, competitionId } = require('./../const/dic')
+const { v4: uuidv4 } = require('uuid');
 
 exports.addMornitor = async(req, res) => {
   const sport = req.body.sport;
   var sites = {};
   sites = req.body.sites;
-
+  const id = uuidv4();
 
   try{
-    const result = await mornitor.findOneAndUpdate({sport: sport},
+    const result = await mornitor.findOneAndUpdate({sport: sport, id:id},
       {
         sport:sport,
         sites:sites

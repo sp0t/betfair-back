@@ -23,11 +23,11 @@ const updateBetfairOdds = () => {
         for (var x in monitor) {
           for (var y in monitor[x].sites) {
             if (monitor[x].sites[y].name == 'betfair') {
-              funcs.push(getBtOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, ['Moneyline', 'Total Points', 'Handicap'], monitor[x].play, session[0].username, session[0].password, updatetm))
+              funcs.push(getBtOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, ['Moneyline', 'Total Points', 'Handicap'], monitor[x].playmode, session[0].username, session[0].password, monitor[x].sport, monitor[x].id, updatetm, ))
             }
 
             if (monitor[x].sites[y].name == 'ps3838') {
-              funcs.push(getPsOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, 0, monitor[x].play, token, updatetm))
+              funcs.push(getPsOdds(monitor[x].sites[y].sportid, monitor[x].sites[y].competition, 0, monitor[x].playmode, token, monitor[x].sport, monitor[x].id, updatetm))
             }
           }
         }

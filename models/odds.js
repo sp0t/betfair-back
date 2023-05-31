@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 const OddsSchema = new mongoose.Schema(
   {
     site: { type: String, required: true },
+    mornitId: {type: String, required: true},
     sportId: { type: String, required: true },
     sportName: { type: String, default: '' },
     competitionId: { type: String, required: true },

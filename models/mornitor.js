@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 const MonitorSchema = new mongoose.Schema(
   {
     sport: {type: String, required: true},
+    id: {type:String, required: true},
     diffmode: {type:Number, default: 0},
     betmode: {type: Number, default: 0},
     monit: {type: Boolean, default: true},
