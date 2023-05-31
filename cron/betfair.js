@@ -8,7 +8,7 @@ const { getBtOdds } = require('./../lib/betfair');
 const { authPs, getPsOdds } = require('./../lib/ps3838');
 
 const updateBetfairOdds = () => {
-  cron.schedule("*/15 * * * * *", async() => {
+  cron.schedule("*/5 * * * * *", async() => {
     try {
       var funcs = [];
       var [monitor, session] = await Promise.all([
@@ -16,7 +16,7 @@ const updateBetfairOdds = () => {
          auth.find({})
       ]);
 
-      var updatetm = new Date().getTime() + 2000;
+      var updatetm = new Date().getTime() + 3000;
 
       if ((monitor.length != 0) && (session.length != 0)) {
         var token = authPs(session[1].username, session[1].password);
