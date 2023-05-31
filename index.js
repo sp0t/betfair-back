@@ -79,17 +79,10 @@ mongoDB.once('open', function() {
   
   console.log('--  Server Started  --')
   // updatePs3838Odds();
-  // updateBetfairOdds();
+  updateBetfairOdds();
   // runsetBetState();
   // runplacebet();
 
-const { v4: uuidv4 } = require('uuid');
-
-// Generate a unique ID
-const id = uuidv4();
-
-console.log(id);
-  
   const port = process.env.PORT || 4200;
   //Starting a server
   app.listen(port, () => {
