@@ -35,6 +35,8 @@ exports.getMatchData = async(req, res) => {
 	const mornitId = req.query.mornitId;
     const away = req.query.away;
     const home = req.query.home;
+
+	console.log(req.query)
   
 	try{
 		var [psodd, btodd] = await Promise.all([
@@ -45,9 +47,16 @@ exports.getMatchData = async(req, res) => {
 		ret.betfair = btodd[0];
 		ret.ps3838 = psodd[0];
 
-		var betdata = await bet.find({betid: btodd[0].betid})
-		ret.betdata = betdata[0];
+		console.log('btodd[0].betid', btodd[0].betid);
 
+		if (btodd[0].betid != '0' ) {
+			var betdata = await bet.find({betid: btodd[0]})
+			ret.betdata = betdata[0];
+		}
+		else
+			ret.betdata = [];
+
+		console.log(ret)
 		res.send(ret);
 
 	} catch(e) {

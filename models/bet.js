@@ -19,3 +19,4 @@ const BetSchema = new mongoose.Schema(
   },
   { collection: 'bet' }
 )
+exports.bet = mongoose.model('bet', BetSchema)

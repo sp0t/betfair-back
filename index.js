@@ -33,9 +33,9 @@ mongoDB.once('open', function() {
   
   console.log('--  Server Started  --')
   // updatePs3838Odds();
-  updateBetfairOdds();
+  // updateBetfairOdds();
   // runsetBetState();
-  runplacebet();
+  // runplacebet();
 
   const port = process.env.PORT || 4200;
   //Starting a server
