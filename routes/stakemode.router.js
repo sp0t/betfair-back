@@ -1,6 +1,6 @@
 module.exports = app => {
-    const betrate = require("../controller/stakemode.controller");
-    app.post("/addStakeMode", betrate.addStakeMode);
-    app.post("/removeStakeMode", betrate.removeStakeMode);
-    app.get("/getStakeMode", betrate.getStakeMode);
+    const stakemode = require("../controller/stakemode.controller");
+    app.post("/addStakeMode", stakemode.addStakeMode);
+    app.post("/removeStakeMode", stakemode.removeStakeMode);
+    app.get("/getStakeMode", stakemode.getStakeMode);
 };

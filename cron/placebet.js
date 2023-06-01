@@ -4,25 +4,21 @@ const cron = require('node-cron');
 
 const { placebet } = require('./../lib/placebet');
 const { mornitor } = require('./../models/mornitor');
-const { betrate } = require('../models/stakemode');
+const { stakemode } = require('../models/stakemode');
 const { auth } = require('./../models/auth')
 
 const runplacebet = () => {
   cron.schedule("*/3 * * * * *", async() => {
-    var [mornitors, betrates, seesion] = await Promise.all([
-       mornitor.find({state: true}),
-       betrate.find({}),
+    var [mornitors, stakemodes, seesion] = await Promise.all([
+       mornitor.find({betting: true}),
+       stakemode.find({}),
        auth.find({site: 'betfair'})
     ]); 
 
-    console.log('place betting start.......');
-
-    if ((mornitors.length != 0) && (betrate.length != 0) && (seesion.length != 0)) {
+    if ((mornitors.length != 0) && (stakemode.length != 0) && (seesion.length != 0)) {
       var funcs = []
       for (var x in mornitors) {
-          for (var y in mornitors[x].sites[0].competition) {
-              funcs.push(placebet(mornitors[x].sites[0].name, mornitors[x].sites[0].competition[y], mornitors[x].sites[1].name, mornitors[x].sites[1].competition[y], betrates, seesion[0]));
-          }
+          funcs.push(placebet(mornitors[x].sites[0].name, mornitors[x].sites[0].competition[0], mornitors[x].sites[1].name, mornitors[x].sites[1].competition[0], mornitors[x].diffmode, mornitors[x].betmode, stakemodes, seesion[0]));
       }
   
       var rets = await Promise.all(funcs)

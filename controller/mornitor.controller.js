@@ -52,8 +52,10 @@ exports.getMornitor = async(req, res) => {
 }
 
 exports.setDiffMode = async(req, res) => {
+	console.log(req.body)
 	const state = req.body.state;
 	const sport = req.body.sport;
+
 
 	try {
 		var resOne = await mornitor.findOne({ sport: sport });
