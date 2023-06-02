@@ -1,23 +1,23 @@
 const { stakemode } = require('../models/stakemode');
 
 exports.addStakeMode = async(req, res) => {
-  const mode = req.body.mode;
+  const diffmode = req.body.diffmode;
+  const betmode = req.body.betmode;
   const from = req.body.from;
   const to = req.body.to;
-  const fixed = req.body.fixed;
-  const percent = req.body.percent;
+  const stake = req.body.stake;
   const max = req.body.max;
 
   console.log(req.body)
 
   try{
-    const result = await stakemode.findOneAndUpdate({mode: mode, from: from, to: to, fixed: fixed, percent: percent, max: max},
+    const result = await stakemode.findOneAndUpdate({diffmode: diffmode, betmode: betmode, from: from, to: to},
       {
-        mode: mode,
+        diffmode:diffmode,
+        betmode: betmode,
         from:from,
         to:to,
-        fixed: fixed,
-        percent: percent,
+        stake: stake,
         max: max,
         state: true
       },
@@ -30,12 +30,14 @@ exports.addStakeMode = async(req, res) => {
 }
 
 exports.removeStakeMode = async(req, res) => {
-  const mode = req.body.mode;
+  const diffmode = req.body.diffmode;
+  const betmode = req.body.betmode;
   const from = req.body.from;
   const to = req.body.to;
+  const stake = req.body.stake;
 
   try{
-    const result = await stakemode.findOneAndDelete({mode: mode, from: from, to: to})
+    const result = await stakemode.findOneAndDelete({diffmode: diffmode, betmode: betmode, from: from, to: to, stake: stake})
     res.send(result);
   } catch(e) {
     res.status(500).send({message: e || "Something went wrong"});
@@ -43,14 +45,10 @@ exports.removeStakeMode = async(req, res) => {
 }
 
 exports.getStakeMode = async(req, res) => {
-  const mode = req.query.mode
 
   try{
     var ret;
-    if (mode == 2)
-      ret = await stakemode.find({})
-    else
-      ret = await stakemode.find({mode: mode})
+    ret = await stakemode.find({})
     res.send(ret)
   } catch(e) {
     res.status(500).send({message: e});

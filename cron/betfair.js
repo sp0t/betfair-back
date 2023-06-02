@@ -8,7 +8,7 @@ const { getBtOdds } = require('./../lib/betfair');
 const { authPs, getPsOdds } = require('./../lib/ps3838');
 
 const updateBetfairOdds = () => {
-  cron.schedule("*/5 * * * * *", async() => {
+  cron.schedule("*/3 * * * * *", async() => {
     try {
       var funcs = [];
       var [monitor, session] = await Promise.all([

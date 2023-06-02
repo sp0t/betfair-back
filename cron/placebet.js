@@ -18,7 +18,7 @@ const runplacebet = () => {
     if ((mornitors.length != 0) && (stakemode.length != 0) && (seesion.length != 0)) {
       var funcs = []
       for (var x in mornitors) {
-          funcs.push(placebet(mornitors[x].sites[0].name, mornitors[x].sites[0].competition[0], mornitors[x].sites[1].name, mornitors[x].sites[1].competition[0], mornitors[x].diffmode, mornitors[x].betmode, stakemodes, seesion[0]));
+          funcs.push(placebet(mornitors[x].sites[0].name, mornitors[x].sites[0].competition[0], mornitors[x].sites[1].name, mornitors[x].sites[1].competition[0], stakemodes, seesion[0]));
       }
   
       var rets = await Promise.all(funcs)

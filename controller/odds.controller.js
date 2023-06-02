@@ -50,7 +50,7 @@ exports.getMatchData = async(req, res) => {
 		console.log('btodd[0].betid', btodd[0].betid);
 
 		if (btodd[0].betid != '0' ) {
-			var betdata = await bet.find({betid: btodd[0]})
+			var betdata = await bet.find({betid: btodd[0].betid})
 			ret.betdata = betdata[0];
 		}
 		else
