@@ -1,5 +1,4 @@
 const { mornitor } = require('./../models/mornitor');
-const { odds } = require('./../models/odds');
 const {betSites, sportsId, competitionId } = require('./../const/dic')
 const { v4: uuidv4 } = require('uuid');
 
@@ -10,9 +9,10 @@ exports.addMornitor = async(req, res) => {
   const id = uuidv4();
 
   try{
-    const result = await mornitor.findOneAndUpdate({sport: sport, id:id},
+    const result = await mornitor.findOneAndUpdate({sport: sport},
       {
         sport:sport,
+		mornitId: id,
         sites:sites
       },
       {upsert: true, new: true, setDefaultsOnInsert: true}
@@ -51,36 +51,6 @@ exports.getMornitor = async(req, res) => {
   }
 }
 
-exports.setDiffMode = async(req, res) => {
-	console.log(req.body)
-	const state = req.body.state;
-	const sport = req.body.sport;
-
-
-	try {
-		var resOne = await mornitor.findOne({ sport: sport });
-		resOne.diffmode = state;
-		const result = await resOne.save();
-		res.send(result);
-	} catch (error) {
-		res.status(500).send({ message: error || 'Something went wrong' });
-	}
-}
-
-exports.setBetMode = async(req, res) => {
-	const state = req.body.state;
-	const sport = req.body.sport;
-
-	try {
-		var resOne = await mornitor.findOne({ sport: sport });
-		resOne.betmode = state;
-		const result = await resOne.save();
-		res.send(result);
-	} catch (error) {
-		res.status(500).send({ message: error || 'Something went wrong' });
-	}
-}
-
 exports.setMonit = async(req, res) => {
 	const state = req.body.state;
 	const sport = req.body.sport;
@@ -116,20 +86,6 @@ exports.setPlayMode = async(req, res) => {
 	try {
 		var resOne = await mornitor.findOne({ sport: sport });
 		resOne.playmode = state;
-		const result = await resOne.save();
-		res.send(result);
-	} catch (error) {
-		res.status(500).send({ message: error || 'Something went wrong' });
-	}
-}
-
-exports.setMarket = async(req, res) => {
-	const state = req.body.state;
-	const market = req.body.market;
-
-	try {
-		var resOne = await mornitor.findOne({ sport: sport });
-		resOne.market = state;
 		const result = await resOne.save();
 		res.send(result);
 	} catch (error) {

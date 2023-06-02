@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 const BetSchema = new mongoose.Schema(
   {
     betid: {type:String, required:true},
-    site: {type:String, required:true},
     betdate: {type:String, required:true},
     away: {type:String, required:true},
     home: {type:String, required:true},

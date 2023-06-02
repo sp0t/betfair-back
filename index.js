@@ -6,7 +6,6 @@ mongoose.connect(process.env.DB_HOST+'/'+process.env.DB_NAME, {useNewUrlParser: 
 mongoose.set('strictQuery', false);
 var mongoDB = mongoose.connection;
 
-const { updatePs3838Odds } = require('./cron/ps3838');
 const { updateBetfairOdds } = require('./cron/betfair');
 const { runsetBetState } = require('./cron/setbetstate');
 const { runplacebet } = require('./cron/placebet');
@@ -26,13 +25,13 @@ mongoDB.once('open', function() {
   require("./routes/monitor.router.js")(app);
   require("./routes/stakemode.router.js")(app);
   require("./routes/odds.router.js")(app);
+  require("./routes/match.router.js")(app);
   
   app.use('/', (req, res) => {
     res.send('API is working')
   });
   
   console.log('--  Server Started  --')
-  // updatePs3838Odds();
   updateBetfairOdds();
   runsetBetState();
   runplacebet();
