@@ -2,7 +2,7 @@ const { monitor } = require('../models/monitor');
 const {betSites, sportsId, competitionId } = require('../const/dic')
 const { v4: uuidv4 } = require('uuid');
 
-exports.addMornitor = async(req, res) => {
+exports.addMonitor = async(req, res) => {
   const sport = req.body.sport;
   var sites = {};
   sites = req.body.sites;
@@ -25,7 +25,7 @@ exports.addMornitor = async(req, res) => {
   }
 }
 
-exports.removeMornitor = async(req, res) => {
+exports.removeMonitor = async(req, res) => {
   const sport = req.body.sport;
   console.log('removeMornitor', req)
   try{
@@ -36,10 +36,8 @@ exports.removeMornitor = async(req, res) => {
   }
 }
 
-exports.getMornitor = async(req, res) => {
+exports.getMonitor = async(req, res) => {
   const sport = req.query.sport;
-
-  console.log('get mornitor=====>', sport);
 
   try{
     let result;
@@ -47,6 +45,7 @@ exports.getMornitor = async(req, res) => {
       result = await monitor.find({}).sort({sport: 1})
     else
       result = await monitor.find({sport: sport})
+	console.log('=======================>getmonitor', result)
     res.send(result)
   } catch(e) {
 		res.status(500).send({message: "Something went wrong"});

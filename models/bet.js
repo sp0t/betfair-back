@@ -4,6 +4,7 @@ const BetSchema = new mongoose.Schema(
   {
     betid: {type:String, required:true},
     betdate: {type:String, required:true},
+    gamedate:{type:String, required:true},
     away: {type:String, required:true},
     home: {type:String, required:true},
     odds: {type:Number, required:true},

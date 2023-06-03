@@ -22,13 +22,9 @@ mongoDB.once('open', function() {
 
   app.use(bodyParser.json());
   
-  console.log('==========================================>1')
   require("./routes/monitor.router.js")(app);
-  console.log('==========================================>2')
   require("./routes/stakemode.router.js")(app);
-  console.log('==========================================>3')
   require("./routes/odds.router.js")(app);
-  console.log('==========================================>4')
   require("./routes/match.router.js")(app);
   
   app.use('/', (req, res) => {
@@ -37,8 +33,8 @@ mongoDB.once('open', function() {
   
   console.log('--  Server Started  --')
   updateBetfairOdds();
-  // runsetBetState();
-  // runplacebet();
+  runsetBetState();
+  runplacebet();
 
   const port = process.env.PORT || 4200;
   //Starting a server

@@ -1,9 +1,9 @@
 module.exports = app => {
     const monitor = require("../controller/monitor.controller");
     
-    app.post("/addMornitor", monitor.addMornitor);
-    app.post("/removeMornitor", monitor.removeMornitor);
-    app.get("/getMornitor", monitor.getMornitor);
+    app.post("/addMonitor", monitor.addMonitor);
+    app.post("/removeMonitor", monitor.removeMonitor);
+    app.get("/getMonitor", monitor.getMonitor);
     app.get("/getSport", monitor.getSport);
     app.get("/getLeague", monitor.getLeague);
     app.post("/setMonit", monitor.setMonit);
