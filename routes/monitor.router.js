@@ -1,13 +1,13 @@
 module.exports = app => {
-    const mornitor = require("../controller/mornitor.controller");
+    const monitor = require("../controller/monitor.controller");
     
-    app.post("/addMornitor", mornitor.addMornitor);
-    app.post("/removeMornitor", mornitor.removeMornitor);
-    app.get("/getMornitor", mornitor.getMornitor);
-    app.get("/getSport", mornitor.getSport);
-    app.get("/getLeague", mornitor.getLeague);
-    app.post("/setMonit", mornitor.setMonit);
-    app.post("/setBetting", mornitor.setBetting);
-    app.post("/setPlayMode", mornitor.setPlayMode);
-    app.post("/updateMornitor", mornitor.updateMornitor);
+    app.post("/addMornitor", monitor.addMornitor);
+    app.post("/removeMornitor", monitor.removeMornitor);
+    app.get("/getMornitor", monitor.getMornitor);
+    app.get("/getSport", monitor.getSport);
+    app.get("/getLeague", monitor.getLeague);
+    app.post("/setMonit", monitor.setMonit);
+    app.post("/setBetting", monitor.setBetting);
+    app.post("/setPlayMode", monitor.setPlayMode);
+    app.post("/updateMornitor", monitor.updateMornitor);
 };

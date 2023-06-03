@@ -1,5 +1,5 @@
-const { mornitor } = require('./../models/mornitor');
-const {betSites, sportsId, competitionId } = require('./../const/dic')
+const { monitor } = require('../models/monitor');
+const {betSites, sportsId, competitionId } = require('../const/dic')
 const { v4: uuidv4 } = require('uuid');
 
 exports.addMornitor = async(req, res) => {
@@ -8,11 +8,13 @@ exports.addMornitor = async(req, res) => {
   sites = req.body.sites;
   const id = uuidv4();
 
+  console.log("===========================<", id);
+
   try{
-    const result = await mornitor.findOneAndUpdate({sport: sport},
+    const result = await monitor.findOneAndUpdate({sport: sport},
       {
         sport:sport,
-		mornitId: id,
+		monitId: id,
         sites:sites
       },
       {upsert: true, new: true, setDefaultsOnInsert: true}
@@ -27,7 +29,7 @@ exports.removeMornitor = async(req, res) => {
   const sport = req.body.sport;
   console.log('removeMornitor', req)
   try{
-    const result = await mornitor.findOneAndDelete({sport: sport})
+    const result = await monitor.findOneAndDelete({sport: sport})
     res.send(result);
   } catch(e) {
     res.status(500).send({message: e || "Something went wrong"});
@@ -42,9 +44,9 @@ exports.getMornitor = async(req, res) => {
   try{
     let result;
     if (sport == 'ALL')
-      result = await mornitor.find({}).sort({sport: 1})
+      result = await monitor.find({}).sort({sport: 1})
     else
-      result = await mornitor.find({sport: sport})
+      result = await monitor.find({sport: sport})
     res.send(result)
   } catch(e) {
 		res.status(500).send({message: "Something went wrong"});
@@ -56,7 +58,7 @@ exports.setMonit = async(req, res) => {
 	const sport = req.body.sport;
 
 	try {
-		var resOne = await mornitor.findOne({ sport: sport });
+		var resOne = await monitor.findOne({ sport: sport });
 		resOne.monit = state;
 		const result = await resOne.save();
 		res.send(result);
@@ -70,7 +72,7 @@ exports.setBetting = async(req, res) => {
 	const sport = req.body.sport;
 
 	try {
-		var resOne = await mornitor.findOne({ sport: sport });
+		var resOne = await monitor.findOne({ sport: sport });
 		resOne.betting = state;
 		const result = await resOne.save();
 		res.send(result);
@@ -84,7 +86,7 @@ exports.setPlayMode = async(req, res) => {
 	const sport = req.body.sport;
 
 	try {
-		var resOne = await mornitor.findOne({ sport: sport });
+		var resOne = await monitor.findOne({ sport: sport });
 		resOne.playmode = state;
 		const result = await resOne.save();
 		res.send(result);
@@ -100,7 +102,7 @@ exports.updateMornitor = async(req, res) => {
   console.log('update mornitor====>', sport, sites);
 
 	try {
-		var resOne = await mornitor.findOne({ sport: sport });
+		var resOne = await monitor.findOne({ sport: sport });
 		resOne.sites = sites;
 		const result = await resOne.save();
 		res.send(result);

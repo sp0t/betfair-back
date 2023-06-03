@@ -3,7 +3,7 @@ require("dotenv").config();
 const cron = require('node-cron');
 
 const { placebet } = require('./../lib/placebet');
-const { mornitor } = require('./../models/mornitor');
+const { mornitor } = require('../models/monitor');
 const { stakemode } = require('../models/stakemode');
 const { auth } = require('./../models/auth')
 

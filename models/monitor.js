@@ -2,13 +2,13 @@ var mongoose = require('mongoose');
 
 const MonitorSchema = new mongoose.Schema(
   {
-    mornitId: {type: String, required: true},
+    monitId: {type: String, required: true},
     sport: {type: String, required: true},
     monit: {type: Boolean, default: true},
     betting: {type: Boolean, default: false},
     playmode: {type: Boolean, default: false},
     sites: [],
   },
-  { collection: 'mornitor' }
+  { collection: 'monitor' }
 )
-exports.mornitor = mongoose.model('mornitor', MonitorSchema)
+exports.monitor = mongoose.model('monitor', MonitorSchema)
