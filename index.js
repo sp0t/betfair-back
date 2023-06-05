@@ -33,8 +33,8 @@ mongoDB.once('open', function() {
   
   console.log('--  Server Started  --')
   updateBetfairOdds();
-  runsetBetState();
-  runplacebet();
+  // runsetBetState();
+  // runplacebet();
 
   const port = process.env.PORT || 4200;
   //Starting a server

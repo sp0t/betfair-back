@@ -8,7 +8,7 @@ const MatchSchema = new mongoose.Schema(
     eventId: { type: String, required: true },
     away: { type: String, required: true },
     home: { type: String, required: true },
-    matchday: {type: String, default: ''},
+    gamedate: {type: String, default: ''},
     update: {type: Number},
     betid: {type: String, default:'0'},
     stakemode: {},
