@@ -41,7 +41,7 @@ const updateBetfairOdds = () => {
             }
 
             if (monitors[x].sites[y].name == 'ps3838') {
-              funcs.push(getPsOdds(monitors[x].monitId, monitors[x].sport, monitors[x].sites[y].sportid, monitors[x].sites[y].competition, 0, monitors[x].playmode, token, convertDate(updatetm)))
+              // funcs.push(getPsOdds(monitors[x].monitId, monitors[x].sport, monitors[x].sites[y].sportid, monitors[x].sites[y].competition, 0, monitors[x].playmode, token, convertDate(updatetm)))
             }
           }
         }
