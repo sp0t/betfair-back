@@ -6,7 +6,7 @@ mongoose.connect(process.env.DB_HOST+'/'+process.env.DB_NAME, {useNewUrlParser: 
 mongoose.set('strictQuery', false);
 var mongoDB = mongoose.connection;
 
-const { updateBetfairOdds } = require('./cron/betfair');
+const { updateodds } = require('./cron/updateodd');
 const { runsetBetState } = require('./cron/setbetstate');
 const { runplacebet } = require('./cron/placebet');
 
@@ -32,7 +32,7 @@ mongoDB.once('open', function() {
   });
   
   console.log('--  Server Started  --')
-  updateBetfairOdds();
+  updateodds();
   // runsetBetState();
   // runplacebet();
 
