@@ -44,6 +44,8 @@ const updateodds = async() => {
           pstoken = session[x].token;
       }
 
+      console.log('bttoken==========>', bttoken)
+
       var updatetm = new Date().getTime() + 3000;
 
       if ((monitors.length != 0) && (session.length != 0)) {
