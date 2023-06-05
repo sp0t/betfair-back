@@ -38,13 +38,11 @@ const updateodds = async() => {
       var bttoken = '';
 
       for (var x in session) {
-        if (session[x].site = 'betfair')
+        if (session[x].site == 'betfair')
           bttoken = session[x].token;
-        if (session[x].site = 'ps3838')
+        if (session[x].site == 'ps3838')
           pstoken = session[x].token;
       }
-
-      console.log('bttoken==========>', bttoken)
 
       var updatetm = new Date().getTime() + 3000;
 
