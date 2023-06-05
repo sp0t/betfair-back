@@ -50,7 +50,7 @@ const updateodds = async() => {
         for (var x in monitors) {
           for (var y in monitors[x].sites) {
             if (monitors[x].sites[y].name == 'betfair') {
-              funcs.push(getBtOdds(monitors[x].monitId, monitors[x].sport, monitors[x].sites[y].sportid, monitors[x].sites[y].competition[0], ['Moneyline', 'Total Points', 'Handicap'], bttoken, convertDate(updatetm)))
+              funcs.push(getBtOdds(monitors[x].monitId, monitors[x].sport, monitors[x].sites[y].sportid, monitors[x].sites[y].competition[0], ['Moneyline', 'Total Points', 'Handicap'], monitors[x].playmode, bttoken, convertDate(updatetm)))
             }
 
             if (monitors[x].sites[y].name == 'ps3838') {
