@@ -18,7 +18,7 @@ const runplacebet = () => {
     .setColor(0x00FFFF);
 
     await webhookClient.send({
-      content: 'I am testing betfair notification',
+      content: 'PIG!!!!!!!!!!!!!!!!!!',
       username: 'BETBOT',
       avatarURL: 'https://i.imgur.com/AfFp7pu.png',
       embeds: [embed],
