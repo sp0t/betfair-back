@@ -45,7 +45,6 @@ exports.getMonitor = async(req, res) => {
       result = await monitor.find({}).sort({sport: 1})
     else
       result = await monitor.find({sport: sport})
-	console.log('=======================>getmonitor', result)
     res.send(result)
   } catch(e) {
 		res.status(500).send({message: "Something went wrong"});
