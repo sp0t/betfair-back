@@ -8,7 +8,7 @@ const { stakemode } = require('../models/stakemode');
 const { auth } = require('./../models/auth')
 
 const { EmbedBuilder, WebhookClient } = require('discord.js');
-const webhookClient = new WebhookClient({url: 'https://discord.com/api/webhooks/1115296086857367613/XlM8Gkom3iGsYsFYdZw57acvPNnmZLL-iZsFGr0Gni2Vln76XQzL8jaPo_0Ai77fx1-b'});
+const webhookClient = new WebhookClient({url: process.env.DISCORD_WEBHOOK_URL});
 
 const runplacebet = () => {
   cron.schedule("*/3 * * * * *", async() => {
