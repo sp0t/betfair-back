@@ -54,7 +54,7 @@ exports.resetAvailableBalance = async(req, res) => {
 		console.log('=============================2', ret)
 		ret[0].available = ret[0].max;
 		console.log('=============================2', ret[0].max)
-		ret.save();
+		ret[0].save();
 		console.log('=============================3')
 		res.send({result: 1});
 	} catch (error) {
