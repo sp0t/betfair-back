@@ -26,6 +26,7 @@ mongoDB.once('open', function() {
   require("./routes/stakemode.router.js")(app);
   require("./routes/odds.router.js")(app);
   require("./routes/match.router.js")(app);
+  require("./routes/balance.router.js")(app);
   
   app.use('/', (req, res) => {
     res.send('API is working')
@@ -34,7 +35,7 @@ mongoDB.once('open', function() {
   console.log('--  Server Started  --')
   // updateodds();
   // runsetBetState();
-  runplacebet();
+  // runplacebet();
 
   const port = process.env.PORT || 4200;
   //Starting a server
