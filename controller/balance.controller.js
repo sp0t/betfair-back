@@ -3,19 +3,21 @@ const { genBtToken } = require('../lib/token');
 const { balance } = require('../models/balance');
 
 exports.getBalance = async(req, res) => {
+	console.log('getbalance=====================3')
 	var total = await getAccountFund();
+	console.log('getbalance=====================4')
 	var data = {};
 
-	try {
-		var retval = await balance.find({});
-		data.total = total;
-		data.max = retval[0].max;
-		data.available = retval[0].available;
-		res.send(data);
-	} catch (error) {
-		await genBtToken();
-		res.status(500).send({message: error});
-	}
+	// try {
+	// 	var retval = await balance.find({});
+	// 	data.total = total;
+	// 	data.max = retval[0].max;
+	// 	data.available = retval[0].available;
+	// 	res.send(data);
+	// } catch (error) {
+	// 	await genBtToken();
+	// 	res.status(500).send({message: error});
+	// }
 }
 
 exports.setMaxBalance = async(req, res) => {
