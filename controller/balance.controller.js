@@ -47,13 +47,13 @@ exports.resetAvailableBalance = async(req, res) => {
 	try {
 		var ret = await balance.find({});
 		if (ret[0] == undefined){
-			res.send(0);
+			res.send({result: 0});
 			return;
 		}
 		ret[0].available = ret[0].max;
 		ret.save();
-		res.send(1);
+		res.send({result: 1});
 	} catch (error) {
-		res.send(0);
+		res.send({result: 0});
 	}
 }
