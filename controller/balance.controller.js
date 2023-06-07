@@ -27,7 +27,7 @@ exports.setMaxBalance = async(req, res) => {
 	var max = req.body.max;
 
 	if (max > total){
-		res.send(0);
+		res.send({result: 0});
 		return;
 	}
 
@@ -36,9 +36,9 @@ exports.setMaxBalance = async(req, res) => {
 	try {
 		await balance.deleteMany({});
 		instance.save();
-		res.send(1);
+		res.send({result: 1});
 	} catch (error) {
-		res.send(0);
+		res.send({result: 0});
 	}
 }
 
