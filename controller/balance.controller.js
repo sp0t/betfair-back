@@ -43,15 +43,19 @@ exports.setMaxBalance = async(req, res) => {
 }
 
 exports.resetAvailableBalance = async(req, res) => {
-
 	try {
+		console.log('=============================1')
 		var ret = await balance.find({});
 		if (ret[0] == undefined){
 			res.send({result: 0});
 			return;
 		}
+
+		console.log('=============================2', ret)
 		ret[0].available = ret[0].max;
+		console.log('=============================2', ret[0].max)
 		ret.save();
+		console.log('=============================3')
 		res.send({result: 1});
 	} catch (error) {
 		res.send({result: 0});
