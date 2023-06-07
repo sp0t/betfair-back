@@ -33,7 +33,7 @@ mongoDB.once('open', function() {
   });
   
   console.log('--  Server Started  --')
-  // updateodds();
+  updateodds();
   // runsetBetState();
   // runplacebet();
 
