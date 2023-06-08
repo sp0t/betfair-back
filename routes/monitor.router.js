@@ -9,5 +9,6 @@ module.exports = app => {
     app.post("/setMonit", monitor.setMonit);
     app.post("/setBetting", monitor.setBetting);
     app.post("/setPlayMode", monitor.setPlayMode);
+    app.post("/setKellyMode", monitor.setKellyMode);
     app.post("/updateMornitor", monitor.updateMornitor);
 };

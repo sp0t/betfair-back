@@ -27,6 +27,7 @@ mongoDB.once('open', function() {
   require("./routes/odds.router.js")(app);
   require("./routes/match.router.js")(app);
   require("./routes/balance.router.js")(app);
+  require("./routes/formula.router.js")(app);
   
   app.use('/', (req, res) => {
     res.send('API is working')

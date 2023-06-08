@@ -1,3 +1,4 @@
+const { number } = require('mathjs');
 var mongoose = require('mongoose');
 
 const MatchSchema = new mongoose.Schema(
@@ -14,7 +15,7 @@ const MatchSchema = new mongoose.Schema(
     stakemode: {},
     betfairodd:{},
     ps3838odd:{},
-    state: { type: Number, default: 0 },
+    state: { type: Number, default: 0 }
   },
   { collection: 'match' }
 )

@@ -93,6 +93,20 @@ exports.setPlayMode = async(req, res) => {
 	}
 }
 
+exports.setKellyMode = async(req, res) => {
+	const state = req.body.state;
+	const sport = req.body.sport;
+
+	try {
+		var resOne = await monitor.findOne({ sport: sport });
+		resOne.kellymode = state;
+		const result = await resOne.save();
+		res.send(result);
+	} catch (error) {
+		res.status(500).send({ message: error || 'Something went wrong' });
+	}
+}
+
 exports.updateMornitor = async(req, res) => {
 	const sport = req.body.sport;
 	const sites = req.body.sites;

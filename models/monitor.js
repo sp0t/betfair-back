@@ -7,6 +7,7 @@ const MonitorSchema = new mongoose.Schema(
     monit: {type: Boolean, default: true},
     betting: {type: Boolean, default: false},
     playmode: {type: Boolean, default: false},
+    kellymode: {type: Boolean, default: false},
     sites: [],
   },
   { collection: 'monitor' }

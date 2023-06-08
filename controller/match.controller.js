@@ -26,6 +26,7 @@ exports.setMatchStakeMode = async(req, res) => {
 	const eventId = req.body.eventId;
 	const stakemode = req.body.stakemode;
 	const monitId = req.body.monitId;
+	console.log('setStakemode===============>', stakemode)
 
 	try {
 		const result = await match.updateOne({ monitId: monitId, eventId:eventId }, { $set: { "stakemode": stakemode } });
