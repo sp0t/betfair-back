@@ -8,6 +8,7 @@ const { runplacebet } = require('./cron/placebet');
 var express = require('express');
 const sportName = 'ALL';
 const competitionName = 'ALL';
+const wsServer = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT })
 
 mongoose.connect(process.env.DB_HOST+'/'+process.env.DB_NAME, {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('strictQuery', false);
@@ -15,7 +16,7 @@ var mongoDB = mongoose.connection;
 
 mongoDB.once('open', function() {
   console.log('--  MogoDB Connected  --');
-  const wsServer = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT })
+  
   
   var app = express();
   app.use(function(req, res, next) {
