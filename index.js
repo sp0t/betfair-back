@@ -1,18 +1,16 @@
 require("dotenv").config();
 var mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const WebSocket = require('ws');
 const { updateodds } = require('./cron/updateodd');
 const { runsetBetState } = require('./cron/setbetstate');
 const { runplacebet } = require('./cron/placebet');
 var express = require('express');
-const sportName = 'ALL';
-const competitionName = 'ALL';
-const wsServer = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT })
+const { startSocketServer } = require('./lib/socket')
 
 mongoose.connect(process.env.DB_HOST+'/'+process.env.DB_NAME, {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('strictQuery', false);
 var mongoDB = mongoose.connection;
+
 
 mongoDB.once('open', function() {
   console.log('--  MogoDB Connected  --');
@@ -26,6 +24,8 @@ mongoDB.once('open', function() {
   });
 
   app.use(bodyParser.json());
+
+  startSocketServer();
   
   require("./routes/monitor.router.js")(app);
   require("./routes/stakemode.router.js")(app);
@@ -38,21 +38,8 @@ mongoDB.once('open', function() {
     res.send('API is working')
   });
 
-  wsServer.on('connection', (ws) => {
-    console.log('WebSocket connected');
-    
-    // Handle WebSocket events
-    ws.on('message', (message) => {
-      console.log(`Received message: ${message}`);
-    });
-    
-    ws.on('close', () => {
-      console.log('WebSocket disconnected');
-    });
-  });  
-  
   console.log('--  Server Started  --')
-  updateodds();
+  // updateodds();
   // runsetBetState();
   // runplacebet();
 
@@ -63,8 +50,5 @@ mongoDB.once('open', function() {
   });
 });
 
-module.exports.wsServer = wsServer;
-module.exports.sportName = sportName;
-module.exports.competitionName = competitionName;
 
 
