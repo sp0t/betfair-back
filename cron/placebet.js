@@ -11,7 +11,7 @@ const { balance } = require('../models/balance')
 const runplacebet = () => {
   cron.schedule("*/3 * * * * *", async() => {
     var [monitors, stakemodes, seesion, totalfund] = await Promise.all([
-      monitor.find({betting: true}),
+        monitor.find({betting: true}),
        stakemode.find({}),
        auth.find({site: 'betfair'}),
        balance.find({})
@@ -20,7 +20,7 @@ const runplacebet = () => {
     if ((monitors.length != 0) && (stakemode.length != 0) && (seesion.length != 0)) {
       var funcs = []
       for (var x in monitors) {
-        funcs.push(placebet(monitors[x].monitId, monitors[x].sport, monitors[x].sites[0].competition[0], stakemodes, seesion[0].token, monitors[x].kellymode, balance[0]));
+        funcs.push(placebet(monitors[x].monitId, monitors[x].sport, monitors[x].sites[0].competition[0], stakemodes, seesion[0].token, monitors[x].kellymode, totalfund[0]));
       }
   
       var rets = await Promise.all(funcs)
