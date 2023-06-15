@@ -15,7 +15,7 @@ const runplacebet = () => {
        auth.find({site: 'betfair'})
     ]); 
 
-    if ((monitors.length != 0) && (stakemode.length != 0) && (seesion.length != 0)) {
+    if ((monitors.length != 0) && (seesion.length != 0)) {
       var funcs = []
       for (var x in monitors) {
         funcs.push(placebet(monitors[x].monitId, monitors[x].sport, monitors[x].sites[0].competition[0], stakemodes, seesion[0].token, monitors[x].kellymode));
