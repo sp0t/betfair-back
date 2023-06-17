@@ -1,28 +1,12 @@
 const { stakemode } = require('../models/stakemode');
 
 exports.addStakeMode = async(req, res) => {
-  const diffmode = req.body.diffmode;
-  const betmode = req.body.betmode;
-  const from = req.body.from;
-  const to = req.body.to;
-  const stake = req.body.stake;
+  const edge = req.body.edge;
   const max = req.body.max;
-
-  console.log(req.body)
+  const kellybalance = req.body.kellybalance;
 
   try{
-    const result = await stakemode.findOneAndUpdate({diffmode: diffmode, betmode: betmode, from: from, to: to},
-      {
-        diffmode:diffmode,
-        betmode: betmode,
-        from:from,
-        to:to,
-        stake: stake,
-        max: max,
-        state: true
-      },
-      {upsert: true, new: true, setDefaultsOnInsert: true}
-    );
+    const result = await stakemode.insert({edge: edge, max: max, kellybalance: kellybalance});
     res.send(result);
   } catch(e) {
     res.status(500).send({message: e || "Something went wrong"});
@@ -30,14 +14,8 @@ exports.addStakeMode = async(req, res) => {
 }
 
 exports.removeStakeMode = async(req, res) => {
-  const diffmode = req.body.diffmode;
-  const betmode = req.body.betmode;
-  const from = req.body.from;
-  const to = req.body.to;
-  const stake = req.body.stake;
-
   try{
-    const result = await stakemode.findOneAndDelete({diffmode: diffmode, betmode: betmode, from: from, to: to, stake: stake})
+    const result = await stakemode.deleteMany({})
     res.send(result);
   } catch(e) {
     res.status(500).send({message: e || "Something went wrong"});
@@ -45,12 +23,26 @@ exports.removeStakeMode = async(req, res) => {
 }
 
 exports.getStakeMode = async(req, res) => {
-
   try{
     var ret;
     ret = await stakemode.find({})
     res.send(ret)
   } catch(e) {
     res.status(500).send({message: e});
+  }
+}
+
+
+exports.modifyStakeMode = async(req, res) => {
+  const edge = req.body.edge;
+  const max = req.body.max;
+  const kellybalance = req.body.kellybalance;
+
+  try{
+    await stakemode.deleteMany({});
+    const result = await stakemode.insert({edge: edge, max: max, kellybalance: kellybalance});
+    res.send(result);
+  } catch(e) {
+    res.status(500).send({message: e || "Something went wrong"});
   }
 }
