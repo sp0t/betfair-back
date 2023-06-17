@@ -41,7 +41,7 @@ mongoDB.once('open', function() {
 
   console.log('--  Server Started  --')
   updateodds();
-  // runSendState();
+  runSendState();
   runsetBetState();
   // runplacebet();
 
