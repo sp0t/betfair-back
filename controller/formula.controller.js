@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const { formula } = require('../models/formula')
 
 exports.getFormula = async(req, res) => {
+	console.log('getFormula=======================>')
 	try {
 		var ret = await formula.find({});
 		res.send(ret);
