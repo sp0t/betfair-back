@@ -5,7 +5,7 @@ const cron = require('node-cron');
 const { placebet } = require('./../lib/placebet');
 const { monitor } = require('../models/monitor');
 const { stakemode } = require('../models/stakemode');
-const { auth } = require('../models/auth')
+const { auth } = require('../models/auth');
 
 const runplacebet = () => {
   cron.schedule("*/3 * * * * *", async() => {
