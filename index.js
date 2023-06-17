@@ -40,9 +40,9 @@ mongoDB.once('open', function() {
   });
 
   console.log('--  Server Started  --')
-  // updateodds();
+  updateodds();
   // runSendState();
-  runsetBetState();
+  // runsetBetState();
   // runplacebet();
 
   const port = process.env.SERVER_PORT || 4200;
