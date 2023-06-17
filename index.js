@@ -43,7 +43,7 @@ mongoDB.once('open', function() {
   updateodds();
   runSendState();
   runsetBetState();
-  // runplacebet();
+  runplacebet();
 
   const port = process.env.SERVER_PORT || 4200;
   //Starting a server
