@@ -2,6 +2,7 @@ require("dotenv").config();
 var mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { updateodds } = require('./cron/updateodd');
+const { runSendState } = require('./cron/sendstate');
 const { runsetBetState } = require('./cron/setbetstate');
 const { runplacebet } = require('./cron/placebet');
 var express = require('express');
@@ -40,6 +41,7 @@ mongoDB.once('open', function() {
 
   console.log('--  Server Started  --')
   updateodds();
+  runSendState();
   // runsetBetState();
   // runplacebet();
 
