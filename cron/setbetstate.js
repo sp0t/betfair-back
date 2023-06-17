@@ -8,8 +8,9 @@ const { auth } = require('../models/auth');
 const runsetBetState = () => {
   cron.schedule("*/3 * * * * *", function() {
     var ret = auth.find({site: 'betfair'})
+    console.log(ret)
     try {
-        setBetState(ret[0].token);
+        setBetState(ret.token);
     } catch (error) {
       console.log('setBetState', error);
     }
