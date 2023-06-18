@@ -1,6 +1,8 @@
 const { monitor } = require('../models/monitor');
+const axios = require("axios");
 const {betSites, sportsId, competitionId } = require('../const/dic')
 const { v4: uuidv4 } = require('uuid');
+const { auth } = require('../models/auth');
 
 exports.addMonitor = async(req, res) => {
   const sport = req.body.sport;
@@ -123,8 +125,42 @@ exports.updateMornitor = async(req, res) => {
 	}
 }
 
-exports.getSport = (req, res) => {
+exports.getSport = async(req, res) => {
   console.log('==========================sportsId')
+  var session = await auth.find({});
+  var sprots = {}
+  
+  for (var x in session) {
+	if (session[x].site == 'betfair') {
+		var options = {
+			headers: {
+			  'X-Application': 'XCy3BR7EjehV32o3',
+			  'Accept':'application/json',
+			  'Content-type': "application/json",
+			  'X-Authentication': session[x].token
+			}
+		  };
+
+		var data = {
+		"filter": {}
+		}
+
+		var btsport = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listMarketCatalogue/', data, options);
+		console.log('=======betfaiar', btsport.data);
+	}
+
+	if (session[x].site == 'ps3838') {
+		var options = {
+			headers: {
+			  'Content-Type': 'application/json',
+			  'Authorization': session[x].token
+			}
+		  };
+
+		var pssport = await axios.get("https://api.ps3838.com/v3/odds", options);
+		console.log('=======betfaiar', pssport.data);
+	}
+  }
   res.send(sportsId);
 }
 
