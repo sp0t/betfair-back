@@ -146,6 +146,7 @@ exports.getSport = async(req, res) => {
 		}
 
 		var btsport = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listEventTypes/', data, options);
+		sprots.betfair = btsport.data;
 		console.log('=======betfaiar', btsport.data);
 	}
 
@@ -158,10 +159,11 @@ exports.getSport = async(req, res) => {
 		  };
 
 		var pssport = await axios.get("https://api.ps3838.com/v3/sports", options);
+		sprots.ps3838 = pssport.data;
 		console.log('=======betfaiar', pssport.data);
 	}
   }
-  res.send(sportsId);
+  res.send(sprots);
 }
 
 exports.getLeague = (req, res) => {
