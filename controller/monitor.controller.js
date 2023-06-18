@@ -142,12 +142,11 @@ exports.getSport = async(req, res) => {
 		  };
 
 		var data = {
-		"filter": {}
+			"filter": {}
 		}
 
 		var btsport = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listEventTypes/', data, options);
 		sprots.betfair = btsport.data;
-		console.log('=======betfaiar', btsport.data);
 	}
 
 	if (session[x].site == 'ps3838') {
@@ -160,13 +159,50 @@ exports.getSport = async(req, res) => {
 
 		var pssport = await axios.get("https://api.ps3838.com/v3/sports", options);
 		sprots.ps3838 = pssport.data;
-		console.log('=======betfaiar', pssport.data);
 	}
   }
   res.send(sprots);
 }
 
-exports.getLeague = (req, res) => {
-  console.log('==========================competitionId')
+exports.getLeague = async(req, res) => {
+  const site = res.query.site;
+  const sportid = res.query.sportid;
+  const session = await auth.findOne({site: site});
+  var leagues = [];
+
+  if (site == 'betfair') {
+	var options = {
+		headers: {
+		  'X-Application': 'XCy3BR7EjehV32o3',
+		  'Accept':'application/json',
+		  'Content-type': "application/json",
+		  'X-Authentication': session.token
+		}
+	  };
+
+	var data = {
+		"filter":{"eventTypeIds": [sportid]}
+	}
+
+	var btleague = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listCompetitions/', data, options);
+	leagues = btleague.data;
+	console.log('=======betfaiar', btleague.data);
+  }
+
+  if (site == 'ps3838') {
+	var options = {
+		headers: {
+		  'Content-Type': 'application/json',
+		  'Authorization': session.token
+		},
+		params: {
+			sportId: sportid
+		  }
+	  };
+
+	var psleague = await axios.get("https://api.ps3838.com/v3/leagues", options);
+	leagues = psleague.data;
+	console.log('=======betfaiar', psleague.data);
+  }
   res.send(competitionId);
 }
