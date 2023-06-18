@@ -204,5 +204,5 @@ exports.getLeague = async(req, res) => {
 	leagues = psleague.data;
 	console.log('=======betfaiar', psleague.data);
   }
-  res.send(competitionId);
+  res.send(leagues);
 }
