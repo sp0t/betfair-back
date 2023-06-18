@@ -165,8 +165,8 @@ exports.getSport = async(req, res) => {
 }
 
 exports.getLeague = async(req, res) => {
-  const site = res.query.site;
-  const sportid = res.query.sportid;
+  const site = req.query.site;
+  const sportid = req.query.sportid;
   const session = await auth.findOne({site: site});
   var leagues = [];
 
