@@ -127,7 +127,6 @@ exports.updateMornitor = async(req, res) => {
 }
 
 exports.getSport = async(req, res) => {
-  console.log('==========================sportsId')
   var session = await auth.find({});
   var sprots = {}
   
@@ -187,7 +186,6 @@ exports.getLeague = async(req, res) => {
 
 	var btleague = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listCompetitions/', data, options);
 	leagues = btleague.data;
-	console.log('=======betfaiar', btleague.data);
   }
 
   if (site == 'ps3838') {
@@ -203,7 +201,6 @@ exports.getLeague = async(req, res) => {
 
 	var psleague = await axios.get("https://api.ps3838.com/v3/leagues", options);
 	leagues = psleague.data;
-	console.log('=======betfaiar', psleague.data);
   }
   res.send(leagues);
 }
