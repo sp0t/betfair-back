@@ -110,6 +110,7 @@ exports.setKellyMode = async(req, res) => {
 }
 
 exports.updateMornitor = async(req, res) => {
+	console.log('update mornitor====>', sport, sites);
 	const sport = req.body.sport;
 	const sites = req.body.sites;
 
