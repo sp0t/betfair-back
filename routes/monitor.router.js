@@ -7,6 +7,7 @@ module.exports = app => {
     app.get("/getMonitor", monitor.getMonitor);
     app.get("/getSport", monitor.getSport);
     app.get("/getLeague", monitor.getLeague);
+    app.get("/getMarket", monitor.getMarket);
     app.post("/setMonit", monitor.setMonit);
     app.post("/setBetting", monitor.setBetting);
     app.post("/setPlayMode", monitor.setPlayMode);

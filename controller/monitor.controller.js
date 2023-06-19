@@ -202,3 +202,45 @@ exports.getLeague = async(req, res) => {
   }
   res.send(leagues);
 }
+
+exports.getMarket = async(req, res) => {
+	const site = req.query.site;
+	const sportid = req.query.sportid;
+	const leagueid = req.query.leagueid;
+	const session = await auth.findOne({site: site});
+	var markets = [];
+  
+	if (site == 'betfair') {
+	  var options = {
+		  headers: {
+			'X-Application': 'XCy3BR7EjehV32o3',
+			'Accept':'application/json',
+			'Content-type': "application/json",
+			'X-Authentication': session.token
+		  }
+		};
+  
+	  var data = {
+		  "filter":{"eventTypeIds": [sportid], "competitionIds}": [leagueid]}
+	  }
+  
+	  var btmarket = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listMarketTypes/', data, options);
+	  markets = btmarket.data;
+	}
+  
+	if (site == 'ps3838') {
+	  var options = {
+		  headers: {
+			'Content-Type': 'application/json',
+			'Authorization': session.token
+		  },
+		  params: {
+			  sportId: sportid
+			}
+		};
+  
+	  var psmarket = await axios.get("https://api.ps3838.com/v1/periods", options);
+	  markets = psmarket.data;
+	}
+	res.send(markets);
+  }
