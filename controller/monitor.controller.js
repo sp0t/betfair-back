@@ -1,8 +1,8 @@
 const { monitor } = require('../models/monitor');
 const axios = require("axios");
-const {betSites, sportsId, competitionId } = require('../const/dic')
 const { v4: uuidv4 } = require('uuid');
 const { auth } = require('../models/auth');
+const { genBtToken } = require('../lib/token');
 
 exports.addMonitor = async(req, res) => {
   const sport = req.body.sport;
@@ -143,8 +143,12 @@ exports.getSport = async(req, res) => {
 			"filter": {}
 		}
 
-		var btsport = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listEventTypes/', data, options);
-		sprots.betfair = btsport.data;
+		try {
+			var btsport = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listEventTypes/', data, options);
+			sprots.betfair = btsport.data;
+		} catch (error) {
+			await genBtToken();	
+		}
 	}
 
 	if (session[x].site == 'ps3838') {
@@ -244,3 +248,5 @@ exports.getMarket = async(req, res) => {
 	}
 	res.send(markets);
   }
+
+

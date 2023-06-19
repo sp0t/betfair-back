@@ -24,8 +24,10 @@ const convertDate = (dateString) => {
 }
 
 const updateodds = async() => {
-  await genBtToken();
-  await genPsToken();
+  await Promise.all([
+    await genBtToken(),
+    await genPsToken()
+  ])
 
   cron.schedule("*/3 * * * * *", async() => {
     try {
