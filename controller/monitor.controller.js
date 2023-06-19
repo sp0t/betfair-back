@@ -125,6 +125,8 @@ exports.updateMonitor = async(req, res) => {
 }
 
 exports.getSport = async(req, res) => {
+  await genBtToken();
+  console.log('===========================================>')	
   var session = await auth.find({});
   var sprots = {}
   
@@ -147,8 +149,7 @@ exports.getSport = async(req, res) => {
 			var btsport = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listEventTypes/', data, options);
 			sprots.betfair = btsport.data;
 		} catch (error) {
-			console.log('===========================================>')
-			await genBtToken();	
+			console.log('===========================================>')	
 		}
 	}
 
