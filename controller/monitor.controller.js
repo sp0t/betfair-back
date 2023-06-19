@@ -29,7 +29,6 @@ exports.addMonitor = async(req, res) => {
 
 exports.removeMonitor = async(req, res) => {
   const sport = req.body.sport;
-  console.log('removeMornitor', req)
   try{
     const result = await monitor.findOneAndDelete({sport: sport})
     res.send(result);
@@ -109,8 +108,7 @@ exports.setKellyMode = async(req, res) => {
 	}
 }
 
-exports.updateMornitor = async(req, res) => {
-	console.log('update mornitor====>', sport, sites);
+exports.updateMonitor = async(req, res) => {
 	const sport = req.body.sport;
 	const sites = req.body.sites;
 
