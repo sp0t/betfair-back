@@ -231,7 +231,7 @@ exports.getMarket = async(req, res) => {
 		};
   
 	  var data = {
-		  "filter":{"eventTypeIds": [sportid], "competitionIds}": [leagueid]}
+		  "filter":{"eventTypeIds": [sportid], "competitionIds": [leagueid]}
 	  }
   
 	  var btmarket = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listMarketTypes/', data, options);
