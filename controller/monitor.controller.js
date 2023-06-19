@@ -218,6 +218,7 @@ exports.getMarket = async(req, res) => {
 	const sportid = req.query.sportid;
 	const leagueid = req.query.leagueid;
 	const session = await auth.findOne({site: site});
+	console.log('sportid===>', sportid, 'leagueid===>', leagueid)
 	var markets = [];
   
 	if (site == 'betfair') {
