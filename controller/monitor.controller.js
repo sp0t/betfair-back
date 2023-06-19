@@ -2,7 +2,7 @@ const { monitor } = require('../models/monitor');
 const axios = require("axios");
 const { v4: uuidv4 } = require('uuid');
 const { auth } = require('../models/auth');
-const { genBtToken } = require('../lib/token');
+const { genBtToken, genPsToken } = require('../lib/token')
 
 exports.addMonitor = async(req, res) => {
   const sport = req.body.sport;
@@ -125,10 +125,14 @@ exports.updateMonitor = async(req, res) => {
 }
 
 exports.getSport = async(req, res) => {
-  await genBtToken();
-  console.log('===========================================>')	
+	await Promise.all([
+		genBtToken(),
+		genPsToken()
+	])
   var session = await auth.find({});
   var sprots = {}
+
+	console.log('session=========>', session)
   
   for (var x in session) {
 	if (session[x].site == 'betfair') {
