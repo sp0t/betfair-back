@@ -236,6 +236,7 @@ exports.getMarket = async(req, res) => {
 	  }
   
 	  var btmarket = await axios.post('https://api.betfair.com/exchange/betting/rest/v1.0/listMarketTypes/', data, options);
+		console.log(btmarket.data)
 	  markets = btmarket.data;
 	}
   
