@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ilovepdf/ilovepdf-nodejs": "^0.2.1",
     "aws-sdk": "^2.1390.0",
     "axios": "^1.4.0",
     "cookie-parser": "^1.4.6",
